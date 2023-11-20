@@ -36,3 +36,6 @@ This sequence can be changed in /etc/nsswitch.conf. <br />
 ``` cat >> /etc/resolv.conf ```
 ``` search biswajit.com ``` If you want append a domain name you can add **search** entry in resolv.conf. <br />
 ``` ping mail ``` Now this resolve to mail.biswajit.com <br />
+**Note: nslookup and dig can be used to test DNS resolution. But both don't use /etc/hosts file for lookup instead use DNS server. <br />**
+You can configure a linux machine as a DNS server by using DNS server solutions like CoreDNS. <br />
+DNS Server by default listens on port 53. <br />
