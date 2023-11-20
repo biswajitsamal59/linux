@@ -33,3 +33,6 @@ Host machine first use /etc/hosts file then DNS nameserver for name resolution. 
 This sequence can be changed in /etc/nsswitch.conf. <br />
 ``` cat /etc/nsswitch.conf ```
 ``` hosts: files dns ``` files refers to /etc/hosts and dns to DNS Server. <br />
+``` cat >> /etc/resolv.conf ```
+``` search biswajit.com ``` If you want append a domain name you can add **search** entry in resolv.conf. <br />
+``` ping mail ``` Now this resolve to mail.biswajit.com <br />
