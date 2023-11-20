@@ -1,4 +1,4 @@
-# Switch and Network Interface
+# Switch and Network Interface:
 In a network we connect two computers we need a **Switch**. <br />
 To connect a computer to a switch we need an **Network Interface Device** on the host(computer), physical or virtual depending on host. <br />
 ``` ip link ``` Show all the available interface info on a host. <br />
@@ -7,7 +7,7 @@ To connect a computer to a switch we need an **Network Interface Device** on the
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/25183196-e479-4954-9ed5-d95e15c238f5)
 **Note: The switch can only enable communication within a network** <br />
 
-# Router and Gateway
+# Router and Gateway:
 **Router** helps to connect two network together. <br />
 You need to configure **Route** using **Gateway**. <br />
 Routing needs to be configured in each system. <br />
@@ -21,3 +21,15 @@ By default in a Linux system packets are not forwarded from one n/w interface to
 ``` cat /proc/sys/net/ipv4/ip_forward ``` By default it's set to 0. <br />
 ``` echo 1 > /proc/sys/net/ipv4/ip_forward ``` To set packet forwarding temporarily. Will not persists on system restart. <br />
 ``` /etc/sysctl.conf ``` Set **net.ipv4.ip_forward=1** to enable packet forwarding for IPv4. Will persist on system restart. <br />
+
+# DNS:
+In a local linux machine we can resolve a Domain Name to IP mapping by adding entry in hosts file. <br />
+``` cat /etc/hosts ``` <br />
+Translating hostname to IP address is know as **Name Resolution** <br />
+We can modify DNS server for a machine by adding nameserver entry in rersolv.conf file. <br />
+``` cat /etc/resolv.conf ```
+``` nameserver 172.54.144.1 ```
+Host machine first use /etc/hosts file then DNS nameserver for name resolution. <br />
+This sequence can be changed in /etc/nsswitch.conf. <br />
+``` cat /etc/nsswitch.conf ```
+``` hosts: files dns ``` files refers to /etc/hosts and dns to DNS Server. <br />
