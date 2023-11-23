@@ -34,3 +34,10 @@ You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We w
 ``` ip -n red link set veth-red up ``` Up the red namespace interface. <br />
 ``` ip -n bule link set veth-blue up ``` <br />
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/e0447766-a6af-4be5-b365-479effbcc598)
+
+# Create connectivity between network namespaces and the Host
+By default ping from host to red namespace will not work (try ``` ping 192.168.15.1 ``` from host). <br />
+But the bridge swithch v-net-0 is network interface for host. <br />
+So we have an interface on 192.168.15.0/24 network on our host. And we can assign an IP to it. <br />
+``` ip addr add 192.168.15.5/24 dev v-eth-0 ``` <br />
+Now we can ping red namespace from our host. <br />
