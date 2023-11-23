@@ -47,7 +47,7 @@ Now we can ping red namespace from our host. <br />
 
 # Create connectivity between network namespaces and outside world
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/75a6e57c-c442-4a6e-b077-e9ae9b21c279)
-(UseCase: HostMachine: 192.168.1.2/24 --> Blue namespace: 192.168.15.2/24. ClientMachine: 192.168.1.3/24) <br />
+(UseCase: Blue namespace: 192.168.15.2/24 --> HostMachine: 192.168.1.2/24 --> ClientMachine: 192.168.1.3/24) <br />
 Add route in blue namespace to reach the clientmachine which is in 192.168.1.0/24 network via it's gateway v-eth-0 (192.168.15.5/24) <br />
 ``` ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5 ``` <br />
 Our Host has two IP addresses: One in bridge network 192.168.15.5 and another in external network 192.168.1.2 <br />
