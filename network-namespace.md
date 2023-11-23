@@ -17,5 +17,20 @@ To create connectivity you need to create a virtual network inside Host. <br />
 To create virtual network you need a virtual switch. <br />
 So create a virtual switch within Host and connect namespaces to it. <br />
 You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We will use Linux Bridge) <br />
-``` ip link add v-net-0 type bridge ```  Create internal bridge network or switch by adding a new interface to host with type **bridge**. <br />
+``` ip link add v-net-0 type bridge ```  Create internal bridge network or switch by adding a new interface to host **(link type bridge)**. <br />
 ``` ip link set dev v-net-0 up ``` v-net-0 will act as an interface to host and switch for the namespaces. <br />
+
+``` ip link add veth-red type veth peer name veth-red-br ``` Create a **pipe** or cable to connect red namespace to v-net-0 bridge **(link type: veth)**. <br />
+``` ip link add veth-blue type veth peer name veth-blue-br ``` <br />
+
+``` ip link set veth-red netns red ``` Attach the cabel one end to red namespace. <br />
+``` ip link set veth-red-br master v-eth-0 ``` Attach the other end of the cable to bridge network using master. <br />
+``` ip link set veth-blue netns blue ``` <br />
+``` ip link set veth-bule-br master v-eth-0 ``` <br />
+
+``` ip -n red addr add 192.168.15.1 dev veth-red ``` Add IP address to red namespace link. <br />
+``` ip -n red addr add 192.168.15.2 dev veth-blue ``` <br />
+
+``` ip -n red link set veth-red up ``` Up the red namespace interface. <br />
+``` ip -n bule link set veth-blue up ``` <br />
+![image](https://github.com/biswajitsamal59/linux/assets/61880328/e0447766-a6af-4be5-b365-479effbcc598)
