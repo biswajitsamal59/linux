@@ -51,9 +51,9 @@ You can configure a linux machine as a DNS server by using DNS server solutions 
 DNS Server by default listens on port 53. <br />
 
 # Other K8S troubleshoot commands
-To display active network connections and listening ports
+To display active network connections and listening ports <br />
 ``` netstat -nplt ``` OR <br />
-``` ss -nplt ``` **ss** (socket statistics), is successor of **netstat** and is recommended for more modern systems
-To display all active network connections and listening ports of etcd
-``` netstat -anp | grep etcd ```
-``` ss -tunp | grep etcd ```
+``` ss -nplt ``` **ss** (socket statistics), is successor of **netstat** and is recommended for more modern systems <br />
+To display all active network connections and listening ports of etcd <br />
+``` netstat -anp | grep etcd ``` <br />
+``` ss -tunp | grep etcd ``` <br />
