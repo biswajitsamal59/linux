@@ -26,13 +26,13 @@ You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We w
 ``` ip link set veth-red netns red ``` Attach the cabel one end to red namespace. <br />
 ``` ip link set veth-red-br master v-eth-0 ``` Attach the other end of the cable to bridge network using master. <br />
 ``` ip link set veth-blue netns blue ``` <br />
-``` ip link set veth-bule-br master v-eth-0 ``` <br />
+``` ip link set veth-blue-br master v-eth-0 ``` <br />
 
-``` ip -n red addr add 192.168.15.1 dev veth-red ``` Add IP address to red namespace link. <br />
-``` ip -n red addr add 192.168.15.2 dev veth-blue ``` <br />
+``` ip -n red addr add 192.168.15.1/24 dev veth-red ``` Add IP address to red namespace link. <br />
+``` ip -n blue addr add 192.168.15.2/24 dev veth-blue ``` <br />
 
 ``` ip -n red link set veth-red up ``` Up the red namespace interface. <br />
-``` ip -n bule link set veth-blue up ``` <br />
+``` ip -n blue link set veth-blue up ``` <br />
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/e0447766-a6af-4be5-b365-479effbcc598)
 
 # Create connectivity between network namespaces and the Host
