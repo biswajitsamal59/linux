@@ -33,6 +33,9 @@ You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We w
 
 ``` ip -n red link set veth-red up ``` Up the red namespace interface. <br />
 ``` ip -n blue link set veth-blue up ``` <br />
+``` ip link set veth-red-br up ``` <br />
+``` ip link set veth-blue-br up ``` <br />
+``` ip netns exec red ping 192.168.15.2 ``` Test connectivity between red and blue namespace. <br />
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/e0447766-a6af-4be5-b365-479effbcc598)
 
 # Create connectivity between network namespaces and the Host
@@ -41,3 +44,21 @@ But the bridge swithch v-eth-0 is network interface for host. <br />
 So we have an interface on 192.168.15.0/24 network on our host. And we can assign an IP to it. <br />
 ``` ip addr add 192.168.15.5/24 dev v-eth-0 ``` <br />
 Now we can ping red namespace from our host. <br />
+
+# Create connectivity between network namespaces and outside world
+![image](https://github.com/biswajitsamal59/linux/assets/61880328/75a6e57c-c442-4a6e-b077-e9ae9b21c279)
+(UseCase: HostMachine: 192.168.1.2/24 --> Blue namespace: 192.168.15.2/24. ClientMachine: 192.168.1.3/24) <br />
+Add route in blue namespace to reach the clientmachine which is in 192.168.1.0/24 network via it's gateway v-eth-0 (192.168.15.5/24) <br />
+``` ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5 ``` <br />
+Our Host has two IP addresses: One in bridge network 192.168.15.5 and another in external network 192.168.1.2 <br />
+Still ClientMachine will not be able to reach back to Blue namespace as it's a private network that ClientMachine don't know about. <br />
+For this we need to enable NAT in our host machine, so that it will send trafic to ClientMachine with it's own address. 
+``` iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE ```
+You can add default route in blue namespace if you want to reach any other network which is accessible by Host. <br />
+``` ip netns exec blue ip route add default via 192.168.15.5 ``` <br />
+
+If ClientMachine wants to talk to Blue namespace: <br />
+We can add route in ClientMachine to connect to 192.168.15.0/24 via Host IP (192.168.1.2). **OR** <br />
+We can use port forwarding in the Host machine. <br />
+``` iptables -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.2:80 -j DNAT ``` <br />
+
