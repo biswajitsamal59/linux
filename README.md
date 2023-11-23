@@ -49,3 +49,11 @@ This sequence can be changed in /etc/nsswitch.conf. <br />
 **Note: nslookup and dig can be used to test DNS resolution. But both don't use /etc/hosts file for lookup instead use DNS server. <br />**
 You can configure a linux machine as a DNS server by using DNS server solutions like CoreDNS. <br />
 DNS Server by default listens on port 53. <br />
+
+# Other K8S troubleshoot commands
+To display active network connections and listening ports
+``` netstat -nplt ``` OR <br />
+``` ss -nplt ``` **ss** (socket statistics), is successor of **netstat** and is recommended for more modern systems
+To display all active network connections and listening ports of etcd
+``` netstat -anp | grep etcd ```
+``` ss -tunp | grep etcd ```
