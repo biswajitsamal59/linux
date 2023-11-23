@@ -17,8 +17,8 @@ To create connectivity you need to create a virtual network inside Host. <br />
 To create virtual network you need a virtual switch. <br />
 So create a virtual switch within Host and connect namespaces to it. <br />
 You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We will use Linux Bridge) <br />
-``` ip link add v-net-0 type bridge ```  Create internal bridge network or switch by adding a new interface to host **(link type bridge)**. <br />
-``` ip link set dev v-net-0 up ``` v-net-0 will act as an interface to host and switch for the namespaces. <br />
+``` ip link add v-eth-0 type bridge ```  Create internal bridge network or switch by adding a new interface to host **(link type bridge)**. <br />
+``` ip link set dev v-eth-0 up ``` v-eth-0 will act as an interface to host and switch for the namespaces. <br />
 
 ``` ip link add veth-red type veth peer name veth-red-br ``` Create a **pipe** or cable to connect red namespace to v-net-0 bridge **(link type: veth)**. <br />
 ``` ip link add veth-blue type veth peer name veth-blue-br ``` <br />
@@ -37,7 +37,7 @@ You can use **Linux Bridge** or **Open vSwitch** to create virtual switch. (We w
 
 # Create connectivity between network namespaces and the Host
 By default ping from host to red namespace will not work (try ``` ping 192.168.15.1 ``` from host). <br />
-But the bridge swithch v-net-0 is network interface for host. <br />
+But the bridge swithch v-eth-0 is network interface for host. <br />
 So we have an interface on 192.168.15.0/24 network on our host. And we can assign an IP to it. <br />
 ``` ip addr add 192.168.15.5/24 dev v-eth-0 ``` <br />
 Now we can ping red namespace from our host. <br />
