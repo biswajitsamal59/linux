@@ -63,4 +63,4 @@ If ClientMachine wants to talk to Blue namespace: <br />
 We can add route in ClientMachine to connect to 192.168.15.0/24 via Host IP (192.168.1.2). **OR** <br />
 We can use port forwarding in the Host machine. <br />
 ``` iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.15.2:80 ``` <br />
-
+``` sudo iptables -nvL -t nat ``` <br />
