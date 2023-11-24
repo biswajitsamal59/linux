@@ -54,8 +54,8 @@ Add route in blue namespace to reach the clientmachine which is in 192.168.1.0/2
 ``` ip netns exec blue ip route add 192.168.1.0/24 via 192.168.15.5 ``` <br />
 Our Host has two IP addresses: One in bridge network 192.168.15.5 and another in external network 192.168.1.2 <br />
 Still ClientMachine will not be able to reach back to Blue namespace as it's a private network that ClientMachine don't know about. <br />
-For this we need to enable NAT in our host machine, so that it will send trafic to ClientMachine with it's own address. 
-``` iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE ```
+For this we need to enable NAT in our host machine, so that it will send trafic to ClientMachine with it's own address. <br />
+``` iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE ``` <br />
 You can add default route in blue namespace if you want to reach any other network which is accessible by Host. <br />
 ``` ip netns exec blue ip route add default via 192.168.15.5 ``` <br />
 
