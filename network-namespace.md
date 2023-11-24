@@ -1,3 +1,5 @@
+![image](https://github.com/biswajitsamal59/linux/assets/61880328/cd1b8712-4f73-4d45-920c-40da3f0d4401)
+
 # Network Namespace
 In a host machine we have Network Interface (eth0), Routing Table and APR table. <br />
 We want to seal all the host network info from container. <br />
