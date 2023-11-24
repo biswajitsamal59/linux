@@ -1,17 +1,4 @@
-![image](https://github.com/biswajitsamal59/linux/assets/61880328/cd1b8712-4f73-4d45-920c-40da3f0d4401)
-
-1. Create Network Namespace	   ip netns add red
-2. Create Bridge Network/Interface	   ip link add v-eth-0 type bridge
-3. Create VETH Pairs (Pipe, Virtual Cable)	   ip link add veth-red type veth peer name veth-red-br
-4. Attach one end of VETH to Namespace	   ip link set veth-red netns red
-5. Attach other end of VETH to Bridge	   ip link set veth-red-br master v-eth-0
-6. Assign IP Addresses	"   ip -n red addr add 192.168.15.1/24 dev veth-red
-   ip addr add 192.168.15.5/24 dev v-eth-0"
-7. Bring the interfaces UP	"   ip -n red link set veth-red up
-   ip link set veth-red-br up"
-8. Enable NAT - IP Masquerade	   iptables -t nat -A POSTROUTING -s 192.168.15.0/24 -j MASQUERADE
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/32731fdb-1da5-49fd-a889-60d03ecb6220)
-
 
 # Network Namespace
 In a host machine we have Network Interface (eth0), Routing Table and APR table. <br />
