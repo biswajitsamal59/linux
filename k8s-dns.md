@@ -20,6 +20,7 @@ CoreDNS pod require a configuration file (most of the cases it's named as Corefi
   - Plugin that makes CoreDNS work with k8s is **kubernetes** plugin. That's where the top level or root domain name (i.e. **cluster.local**) is set. <br />
   - Any record that DNS server can't solve (i.e. if a pod is trying to reach www.google.com) it is forwarded to the **nameserver** configured in **CoreDNS pod's /etc/resolv.conf** file. <br />
   - CoreDNS pod's /etc/resolv.conf file is set to use the nameserver from kubernetes node. <br />
+  
 This Corefile is passed in to the CoreDNS pod as a configmap (name: coredns) object. <br />
 So you can modify the configuration by modifying coredns configmap. <br />
 When CoreDNS is deployed, it also creates a svc to make it available to other components in the cluster. (default svc name: kube-dns) <br />
