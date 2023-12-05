@@ -24,6 +24,7 @@ CoreDNS pod require a configuration file (most of the cases it's named as Corefi
 This Corefile is passed in to the CoreDNS pod as a configmap (name: coredns) object. <br />
 So you can modify the configuration by modifying coredns configmap. <br />
 When CoreDNS is deployed, it also creates a svc to make it available to other components in the cluster. (default svc name: kube-dns) <br />
-The IP address of CoreDNS service is configured as nameserver on Pods. <br />
+The IP address of CoreDNS service is configured as nameserver on Pods. (resolv.conf) <br />
 The DNS configuration in POD is done automatically with help of kubelet when the pods are created. <br />
 You can check the kubelet config ``` cat /var/lib/kubelet/config.yaml ```. Check for clusterDNS entry. <br />
+All the pod's resolv.conf file is also having a serach entry ``` search default.svc.cluster.local svc.cluster.local cluster.local ``` <br />
