@@ -30,4 +30,6 @@ But for services there are no processes or namespaces or interfaces. It's just a
   - We can set proxy-mode while configuring kube-proxy service. ``` kube-proxy --proxy-mode [userspace | iptables | ipvs] ... ``` <br />
   - Iptables creates a DNAT rule to forward the traffic. <br />
 ![image](https://github.com/biswajitsamal59/linux/assets/61880328/189f412f-0522-44b5-962f-82234e63d757)
+![image](https://github.com/biswajitsamal59/linux/assets/61880328/8dc542d0-81f2-4640-b9d7-49bf851b74d8)
+
 
